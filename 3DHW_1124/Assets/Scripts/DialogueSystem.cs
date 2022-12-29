@@ -11,6 +11,9 @@ namespace yatzu
     {
         [SerializeField, Header("對話間隔"), Range(0, 0.5f)]
         private float dialogueIntervalTime = 0.1f;
+        [SerializeField, Header("開頭對話")]
+        private DialogueData dialogueOpening;
+
 
         private WaitForSeconds dialogueInterval => new WaitForSeconds(dialogueIntervalTime);
 
