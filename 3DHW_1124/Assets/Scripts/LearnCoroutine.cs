@@ -20,8 +20,11 @@ namespace yatzu
 
         private void Awake()
         {
-            StartCoroutine(Test());
-            print("取得測試對話的第一個字:" + testDialogue[0]);
+            // StartCoroutine(Test());
+
+            // print("取得測試對話的第一個字:" + testDialogue[0]);
+
+            // StartCoroutine(ShowDialogue());
             StartCoroutine(ShowDialogue());
         }
 
@@ -33,6 +36,7 @@ namespace yatzu
          yield return new WaitForSeconds(3);
          print("<color=#3333ff>第三行程式</color>");
         }
+
         private IEnumerator ShowDialogue()
         {
             print(testDialogue[0]);
@@ -41,6 +45,15 @@ namespace yatzu
             yield return new WaitForSeconds(0.1f);
             print(testDialogue[2]);
             yield return new WaitForSeconds(0.1f);
+        }
+
+        private IEnumerator ShowDialogueUsefor()
+        {
+            for (int i = 0; i < testDialogue.Length; i++)
+            {
+                print(testDialogue[i]);
+                yield return new WaitForSeconds(0.2f);
+            }
         }
     }
 }
