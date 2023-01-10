@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
+
 
 namespace yatzu
 {
@@ -30,8 +32,31 @@ namespace yatzu
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
+            StartCoroutine(FadeGroup());
+            StartCoroutine(TypeEffect());
+        }
+        
 
+        ///<summary>
+        ///淡入淡出群組物件
+        ///</summary>
+        private IEnumerator FadeGroup()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                groupDialogue.alpha += 0.1f;
+                yield return new WaitForSeconds(0.04f);
+            }
         }
 
+        private IEnumerator TypeEffect()
+        {
+            textName.text = dialogueOpening.dialogueName;
+            textContent.text = "";
+
+            string dialogue = dialogueOpening.dialogueContents[0];
+
+            yield return dialogueInterval;
+        }
     }
 }
