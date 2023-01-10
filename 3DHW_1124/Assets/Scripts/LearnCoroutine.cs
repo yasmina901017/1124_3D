@@ -25,7 +25,7 @@ namespace yatzu
             // print("取得測試對話的第一個字:" + testDialogue[0]);
 
             // StartCoroutine(ShowDialogue());
-            StartCoroutine(ShowDialogue());
+            StartCoroutine(ShowDialogueUseFor());
         }
 
         private IEnumerator Test()
@@ -47,7 +47,7 @@ namespace yatzu
             yield return new WaitForSeconds(0.1f);
         }
 
-        private IEnumerator ShowDialogueUsefor()
+        private IEnumerator ShowDialogueUseFor()
         {
             for (int i = 0; i < testDialogue.Length; i++)
             {
