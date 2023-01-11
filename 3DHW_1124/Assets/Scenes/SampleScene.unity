@@ -5093,7 +5093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1441642305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6380,7 +6380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1828391397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7056,6 +7056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueIntervalTime: 0.1
   dialogueOpening: {fileID: 11400000, guid: d7a0f6401dea899498681096d6149aca, type: 2}
+  dialogueKey: 32
 --- !u!1001 &2000956594
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,6 +23,19 @@ namespace yatzu
                 print("迴圈: " + number);
             }
 
+            if (true)
+            {
+                print("判斷式");
+            }
+
+            int count = 0;
+
+            while (count < 5)
+            {
+                print("() 內的布林值為 ture 就會持續執行。");
+                print("while 迴圈數字:" + count);
+                count++;
+            }
         }
 
     }
