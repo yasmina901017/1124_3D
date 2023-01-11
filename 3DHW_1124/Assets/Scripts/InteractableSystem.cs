@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace yatzu
 {
     /// <summary>
-    /// 互動系統 : 偵測玩家是否進入並且執行互動行為
+    /// 互動系統:偵測玩家是否進入並且執行互動行為
     /// </summary>
+
     public class InteractableSystem : MonoBehaviour
     {
-        [SerializeField, Header("對話資料")]
+        [SerializeField, Header("第一段對話資料")]
         private DialogueData dataDialogue;
-
+        [SerializeField, Header("對話結束後的事件")]
+        private UnityEvent onDialogueFinish;
+        [SerializeField, Header("啟動道具")]
+        private GameObject propActive;
+        [SerializeField, Header("啟動後的對話資料")]
+        private DialogueData dataDialogueActive;
         private string nameTarget = "PlayerCapsule";
+
+        [SerializeField, Header("啟動後對話結束後的事件")]
+        private UnityEvent onDialogueFinishAfterActive;
         private DialogueSystem dialogueSystem;
 
         private void Awake()
@@ -18,29 +28,28 @@ namespace yatzu
             dialogueSystem = GameObject.Find("畫布對話系統").GetComponent<DialogueSystem>();
         }
 
-        // 3D 物件適用
-        //兩個碰撞物件必須其中一個勾選 Is Trigger
-        //觸發開始
         private void OnTriggerEnter(Collider other)
         {
-            //如果 碰撞物件名稱 包含 PlayerCapsule 就執行 {}
             if (other.name.Contains(nameTarget))
             {
                 print(other.name);
-                dialogueSystem.StartDialogue(dataDialogue);
+
+                //如果 不需要啟動道具 或者 啟動道具是顯示的 就執行 第一段對話
+                if (propActive == null || propActive.activeInHierarchy)
+                {
+                    dialogueSystem.StartDialogue(dataDialogue, onDialogueFinish);
+                }
+                else
+                {
+                    dialogueSystem.StartDialogue(dataDialogueActive, onDialogueFinishAfterActive);
+                }
             }
         }
 
-        //碰撞結束
-        private void OnTriggerExit(Collider other)
+        public void HiddenObject()
         {
-            
-        }
-
-        //持續碰撞
-        private void OnTriggerStay(Collider other)
-        {
-            
+            gameObject.SetActive(false);
         }
     }
 }
+    
