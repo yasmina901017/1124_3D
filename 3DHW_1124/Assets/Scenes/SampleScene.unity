@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc02c19ceff6e4795fb9b02fcf47d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataDialogue: {fileID: 0}
+  dataDialogue: {fileID: 11400000, guid: 6cdb9a516f9e0f147b3b54885fa2019f, type: 2}
 --- !u!1001 &412598765
 PrefabInstance:
   m_ObjectHideFlags: 0
