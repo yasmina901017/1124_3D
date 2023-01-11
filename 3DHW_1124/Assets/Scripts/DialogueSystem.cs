@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 
 namespace yatzu
@@ -11,6 +12,7 @@ namespace yatzu
 
     public class DialogueSystem : MonoBehaviour
     {
+
         [SerializeField, Header("對話間隔"), Range(0, 0.5f)]
         private float dialogueIntervalTime = 0.1f;
         [SerializeField, Header("開頭對話")]
@@ -26,6 +28,8 @@ namespace yatzu
         private TextMeshProUGUI textContent;
         private GameObject goTriangle;
 
+        private PlayerInput playerInput;              //玩家輸入元件
+
         private void Awake()
         {
             groupDialogue = GameObject.Find("畫布對話系統").GetComponent<CanvasGroup>();
@@ -34,10 +38,18 @@ namespace yatzu
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
-            StartCoroutine(FadeGroup());
-            StartCoroutine(TypeEffect());
+            playerInput = GameObject.Find("PlayerCapsule").GetComponent<PlayerInput>();
+
+            StartDialogue(dialogueOpening);
         }
         
+
+        public void StartDialogue(DialogueData data)
+        {
+            playerInput.enabled = false;               //關閉 玩家輸入元件
+            StartCoroutine(FadeGroup());
+            StartCoroutine(TypeEffect(data));
+        }
 
         ///<summary>
         ///淡入淡出群組物件
@@ -62,18 +74,18 @@ namespace yatzu
         /// <summary>
         /// 打字效果
         /// </summary>
-        private IEnumerator TypeEffect()
+        private IEnumerator TypeEffect(DialogueData data)
         {
-            textName.text = dialogueOpening.dialogueName;
+            textName.text = data.dialogueName;
 
-            for (int j = 0; j < dialogueOpening.dialogueContents.Length; j++)
+            for (int j = 0; j < data.dialogueContents.Length; j++)
             {
 
 
                 textContent.text = "";
                 goTriangle.SetActive(false);
 
-                string dialogue = dialogueOpening.dialogueContents[j];
+                string dialogue = data.dialogueContents[j];
 
                 for (int i = 0; i < dialogue.Length; i++)
                 {
@@ -90,6 +102,7 @@ namespace yatzu
                 print("<color=#993300>玩家按下按鍵!</color>");
             }
             StartCoroutine(FadeGroup(false));
+            playerInput.enabled = true;           //開啟 玩家輸入元件
         }
     }
 }
