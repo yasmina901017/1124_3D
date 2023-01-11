@@ -39,7 +39,7 @@ namespace yatzu
         {
             groupDialogue = GameObject.Find("畫布對話系統").GetComponent<CanvasGroup>();
             textName = GameObject.Find("對話者名稱").GetComponent<TextMeshProUGUI>();
-            textContent = GameObject.Find("對話內容").GetComponent<TextMeshProUGUI>();
+            textContent = GameObject.Find("對話者內容").GetComponent<TextMeshProUGUI>();
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
